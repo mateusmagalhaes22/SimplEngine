@@ -92,9 +92,6 @@ mvn test
 ## Contributing
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any enhancements or bug fixes.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
 ## Gradle consumer example
 
 If your consumer project uses Gradle, point to the local Maven repo and add the dependency:
