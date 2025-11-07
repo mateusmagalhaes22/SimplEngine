@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.MainTest" time="0.147" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.InputManagerTest" time="0.034" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.class.path" value="/home/mateus/dev/SimplEngine/target/test-classes:/home/mateus/dev/SimplEngine/target/classes:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/mateus/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/mateus/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/mateus/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/mateus/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
-    <property name="sun.awt.enableExtraMouseButtons" value="true"/>
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
@@ -54,7 +53,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="Canvas_newCanvas_createsNewCanvas" classname="com.example.simplengine.MainTest" time="0.124"/>
-  <testcase name="Canvas_newCanvasWithTitle_createsNewCanvasWithTitle" classname="com.example.simplengine.MainTest" time="0.016"/>
-  <testcase name="Canvas_newCanvas_invalidDimensions_throwsException" classname="com.example.simplengine.MainTest" time="0.002"/>
+  <testcase name="inputManager_holdingKey_doesNotTriggerMultiplePressed" classname="com.example.simplengine.InputManagerTest" time="0.014"/>
+  <testcase name="inputManager_multipleKeys_tracksIndependently" classname="com.example.simplengine.InputManagerTest" time="0.001"/>
+  <testcase name="inputManager_isKeyUp_returnsOppositeOfKeyDown" classname="com.example.simplengine.InputManagerTest" time="0.001"/>
+  <testcase name="inputManager_update_clearsTransientStates" classname="com.example.simplengine.InputManagerTest" time="0.001"/>
+  <testcase name="inputManager_keyReleased_setsKeyUp" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
+  <testcase name="inputManager_keyPressed_setsKeyDown" classname="com.example.simplengine.InputManagerTest" time="0.001"/>
+  <testcase name="inputManager_unmappedKey_ignored" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
+  <testcase name="inputManager_getInstance_returnsSingleton" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
 </testsuite>

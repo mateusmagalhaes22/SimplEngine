@@ -9,35 +9,35 @@ public abstract class GameObject {
     public GameObject() {
         this.hasGravity = false;
         this.position = new Vector2(0, 0);
-        this.velocity = new Vector2(0, 0);
+        this.speed = new Vector2(0, 0);
     }
 
     private Boolean hasGravity;
 
     private Vector2 position;
 
-    private Vector2 velocity;
+    private Vector2 speed;
 
-    public Vector2 getVelocity() {
-        return velocity;
+    public Vector2 getSpeed() {
+        return speed;
     }
 
-    public void setVelocity(Vector2 velocity) {
-        this.velocity = velocity;
+    public void setSpeed(Vector2 speed) {
+        this.speed = speed;
     }
 
     public void update(double dt){
         if (position == null) position = new com.example.simplengine.Vectors.Vector2(0f, 0f);
-        if (velocity == null) velocity = new com.example.simplengine.Vectors.Vector2(0f, 0f);
+        if (speed == null) speed = new com.example.simplengine.Vectors.Vector2(0f, 0f);
 
         double gravity = 981d;
 
         if (hasGravity) {
-            velocity.setY(velocity.getY() + gravity * dt);
+            speed.setY(speed.getY() + gravity * dt);
         }
 
-        position.setX(position.getX() + velocity.getX() * dt);
-        position.setY(position.getY() + velocity.getY() * dt);
+        position.setX(position.getX() + speed.getX() * dt);
+        position.setY(position.getY() + speed.getY() * dt);
     }
 
     public abstract void render(Graphics2D g);

@@ -7,11 +7,13 @@ import java.awt.geom.Rectangle2D;
 
 public class Rect extends GameObject {
     private Vector2 size;
+    private Color color;
 
     public Rect(int width, int height, int posX, int posY) {
         super();
         this.size = new Vector2(width, height);
         setPosition(new Vector2(posX, posY));
+        this.color = Color.WHITE;
     }
 
     public double getWidth() {
@@ -26,6 +28,18 @@ public class Rect extends GameObject {
         this.size = new Vector2(width, height);
     }
 
+    public void setColor(int r, int g, int b) {
+        this.color = new Color(r, g, b);
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
     @Override
     public void render(Graphics2D g) {
         if (g == null) return;
@@ -37,7 +51,7 @@ public class Rect extends GameObject {
         int h = (int) getHeight();
 
         Color old = g.getColor();
-        g.setColor(Color.WHITE);
+        g.setColor(color);
         g.fillRect(x, y, w, h);
         g.setColor(Color.BLACK);
         g.drawRect(x, y, w, h);

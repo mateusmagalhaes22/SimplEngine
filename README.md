@@ -6,6 +6,8 @@ SimplEngine is a minimal Java library you can reuse in other projects. It includ
 ## Features
 - `Render.Canvas`: Utility to create a Swing window and drawing surface quickly.
 - `GameLoop.GameLoop`: Lightweight game loop with start/stop, target FPS (default 144), delta-time, and FPS tracking.
+- `Inputs.Key`: Enum with main keyboard keys (A-Z, 0-9, arrows, SPACE, ENTER, etc.).
+- `Inputs.InputManager`: Singleton to track keyboard state (pressed, released, held down).
 
 ## Getting Started
 
@@ -81,6 +83,101 @@ Notes:
 - You can change the target FPS at runtime with `loop.setTargetFps(144);`.
 - Query the measured FPS via `loop.getCurrentFps()`.
 - For actual rendering, create and manage your own BufferStrategy/Graphics pipeline on the AWT canvas you add to the frame.
+
+### Using Keyboard Input
+
+SimplEngine provides a simple keyboard input system with the `InputManager` singleton and `Key` enum.
+
+#### Setup
+
+Register the input listener with your canvas:
+
+```java
+import javax.swing.JFrame;
+import com.example.simplengine.Render.Canvas;
+import com.example.simplengine.Inputs.InputManager;
+import com.example.simplengine.Inputs.Key;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = Canvas.newCanvas(800, 600, "Input Demo");
+        java.awt.Canvas surface = Canvas.getSurface();
+
+        // Register keyboard listener
+        InputManager input = InputManager.getInstance();
+        surface.addKeyListener(input.getKeyListener());
+        surface.setFocusable(true);
+        surface.requestFocus();
+    }
+}
+```
+
+#### Polling Keys
+
+The `InputManager` provides three main methods:
+
+- **`isKeyDown(Key)`**: Returns `true` while the key is held down (continuous).
+- **`isKeyPressed(Key)`**: Returns `true` only on the frame the key was pressed (single event).
+- **`isKeyReleased(Key)`**: Returns `true` only on the frame the key was released (single event).
+
+#### Example: Moving a Rectangle with WASD
+
+```java
+import com.example.simplengine.GameLoop.GameLoop;
+import com.example.simplengine.GameObjects.Rect;
+import com.example.simplengine.Inputs.InputManager;
+import com.example.simplengine.Inputs.Key;
+
+Rect player = new Rect(50, 50, 375, 275);
+
+GameLoop loop = new GameLoop(
+    dt -> {
+        InputManager input = InputManager.getInstance();
+        double speed = 200; // pixels per second
+
+        // Continuous movement (while key is held)
+        if (input.isKeyDown(Key.W)) {
+            player.getPosition().setY(player.getPosition().getY() - speed * dt);
+        }
+        if (input.isKeyDown(Key.S)) {
+            player.getPosition().setY(player.getPosition().getY() + speed * dt);
+        }
+        if (input.isKeyDown(Key.A)) {
+            player.getPosition().setX(player.getPosition().getX() - speed * dt);
+        }
+        if (input.isKeyDown(Key.D)) {
+            player.getPosition().setX(player.getPosition().getX() + speed * dt);
+        }
+
+        // Single action (e.g., jump)
+        if (input.isKeyPressed(Key.SPACE)) {
+            // Jump logic here
+        }
+
+        // IMPORTANT: Clear "just pressed/released" states at end of frame
+        input.update();
+    },
+    () -> {
+        Canvas.render(g -> {
+            player.render(g);
+        });
+    }
+);
+
+loop.start();
+```
+
+#### Available Keys
+
+The `Key` enum includes:
+- **Letters**: `A` to `Z`
+- **Numbers**: `NUM_0` to `NUM_9`
+- **Arrows**: `ARROW_UP`, `ARROW_DOWN`, `ARROW_LEFT`, `ARROW_RIGHT`
+- **Control**: `SPACE`, `ENTER`, `ESCAPE`, `BACKSPACE`, `TAB`
+- **Modifiers**: `SHIFT`, `CTRL`, `ALT`
+- **Function keys**: `F1` to `F12`
+
+**Important**: Always call `input.update()` at the end of your update loop to clear transient key states (`isKeyPressed`/`isKeyReleased`).
 
 ## Running Tests
 To run the tests included in this library, use the following Maven command:

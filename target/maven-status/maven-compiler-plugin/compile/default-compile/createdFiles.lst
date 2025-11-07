@@ -1,7 +1,10 @@
+com/example/simplengine/Inputs/InputManager.class
 com/example/simplengine/GameObjects/Rect.class
 com/example/simplengine/GameLoop/GameLoop$Renderer.class
 com/example/simplengine/GameLoop/GameLoop.class
 com/example/simplengine/Render/Canvas.class
 com/example/simplengine/Vectors/Vector2.class
 com/example/simplengine/GameLoop/GameLoop$Updater.class
+com/example/simplengine/Inputs/Keys.class
 com/example/simplengine/GameObjects/GameObject.class
+com/example/simplengine/Inputs/InputManager$1.class
