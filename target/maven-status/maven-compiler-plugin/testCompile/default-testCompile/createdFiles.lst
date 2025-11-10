@@ -1,3 +1,5 @@
-com/example/simplengine/InputManagerTest.class
+com/example/simplengine/Vectors/Vector2Test.class
 com/example/simplengine/CollisionTest.class
 com/example/simplengine/MainTest.class
+com/example/simplengine/InputManagerTest.class
+com/example/simplengine/CameraTest.class

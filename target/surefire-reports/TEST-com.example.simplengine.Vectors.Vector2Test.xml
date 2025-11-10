@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.InputManagerTest" time="0.043" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.Vectors.Vector2Test" time="0.072" tests="24" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -53,12 +53,28 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="inputManager_holdingKey_doesNotTriggerMultiplePressed" classname="com.example.simplengine.InputManagerTest" time="0.019"/>
-  <testcase name="inputManager_multipleKeys_tracksIndependently" classname="com.example.simplengine.InputManagerTest" time="0.001"/>
-  <testcase name="inputManager_isKeyUp_returnsOppositeOfKeyDown" classname="com.example.simplengine.InputManagerTest" time="0.001"/>
-  <testcase name="inputManager_update_clearsTransientStates" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
-  <testcase name="inputManager_keyReleased_setsKeyUp" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
-  <testcase name="inputManager_keyPressed_setsKeyDown" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
-  <testcase name="inputManager_unmappedKey_ignored" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
-  <testcase name="inputManager_getInstance_returnsSingleton" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
+  <testcase name="testSubtractDoublesWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.004"/>
+  <testcase name="testSubtractVectorResultingInZero" classname="com.example.simplengine.Vectors.Vector2Test" time="0.002"/>
+  <testcase name="testSetYWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testAddDoubles" classname="com.example.simplengine.Vectors.Vector2Test" time="0.002"/>
+  <testcase name="testSetXWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.003"/>
+  <testcase name="testSetX" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testSetY" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testConstructorWithNegativeValues" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testConstructorWithZero" classname="com.example.simplengine.Vectors.Vector2Test" time="0.002"/>
+  <testcase name="testAddVectorResultingInZero" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testComplexChainedOperations" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testSubtractVectorWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testChainedOperations" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testAddVector" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testSubtractVector" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testImmutability" classname="com.example.simplengine.Vectors.Vector2Test" time="0.002"/>
+  <testcase name="testSubtractVectorResultingInNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testSubtractDoublesResultingInZero" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testAddVectorWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testSubtractDoubles" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testAddDoublesWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testAddDoublesResultingInZero" classname="com.example.simplengine.Vectors.Vector2Test" time="0.002"/>
+  <testcase name="testConstructor" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="testSubtractDoublesResultingInNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
 </testsuite>

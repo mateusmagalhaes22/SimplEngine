@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.InputManagerTest" time="0.043" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.CameraTest" time="0.067" tests="24" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -53,12 +53,28 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="inputManager_holdingKey_doesNotTriggerMultiplePressed" classname="com.example.simplengine.InputManagerTest" time="0.019"/>
-  <testcase name="inputManager_multipleKeys_tracksIndependently" classname="com.example.simplengine.InputManagerTest" time="0.001"/>
-  <testcase name="inputManager_isKeyUp_returnsOppositeOfKeyDown" classname="com.example.simplengine.InputManagerTest" time="0.001"/>
-  <testcase name="inputManager_update_clearsTransientStates" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
-  <testcase name="inputManager_keyReleased_setsKeyUp" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
-  <testcase name="inputManager_keyPressed_setsKeyDown" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
-  <testcase name="inputManager_unmappedKey_ignored" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
-  <testcase name="inputManager_getInstance_returnsSingleton" classname="com.example.simplengine.InputManagerTest" time="0.002"/>
+  <testcase name="camera_screenToWorld_convertsCorrectly" classname="com.example.simplengine.CameraTest" time="0.002"/>
+  <testcase name="camera_worldToScreen_convertsCorrectly" classname="com.example.simplengine.CameraTest" time="0.002"/>
+  <testcase name="camera_worldToScreen_andBack_isReversible" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_move_addsToPosition" classname="com.example.simplengine.CameraTest" time="0.002"/>
+  <testcase name="camera_setPositionVector_updatesPosition" classname="com.example.simplengine.CameraTest" time="0.003"/>
+  <testcase name="camera_screenToWorld_withZoom" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_follow_respectsDeltaTime" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_follow_eventuallyReachesTarget" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_follow_smoothsMovement" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_defaultZoom_isOne" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_follow_withHighSpeed_movesFaster" classname="com.example.simplengine.CameraTest" time="0.005"/>
+  <testcase name="camera_initializationSingletonTest" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_setFollowSpeed_clampsValues" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_setZoom_updatesZoom" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_centerOn_setsPosition" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_screenToWorld_withCameraOffset" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_setZoom_clampsBelowMinimum" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_centerOnVector_setsPosition" classname="com.example.simplengine.CameraTest" time="0.002"/>
+  <testcase name="camera_follow_movesTowardsTarget" classname="com.example.simplengine.CameraTest" time="0.004"/>
+  <testcase name="camera_follow_withVector_movesTowardsTarget" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_setPosition_updatesPosition" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_defaultPosition_isZero" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_worldToScreen_withCameraOffset" classname="com.example.simplengine.CameraTest" time="0.001"/>
+  <testcase name="camera_worldToScreen_withZoom" classname="com.example.simplengine.CameraTest" time="0.001"/>
 </testsuite>

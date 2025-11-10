@@ -1,13 +1,19 @@
 package com.example.simplengine.Render;
 
 import javax.swing.*;
+
+import com.example.simplengine.Camera.Camera;
+
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.util.function.Consumer;
 
 public final class Canvas {
 
 	private static volatile java.awt.Canvas SURFACE;
+
+	private static final Camera CAMERA = Camera.getInstance();
 
 	public static JFrame newCanvas(int width, int height) {
 		return newCanvas(width, height, "SimplEngine");
@@ -70,17 +76,39 @@ public final class Canvas {
 		do {
 			Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 			try {
+
 				Color old = g.getColor();
 				g.setColor(surface.getBackground());
 				g.fillRect(0, 0, surface.getWidth(), surface.getHeight());
 				g.setColor(old);
+
+				AffineTransform originalTransform = g.getTransform();
+				applyCameraTransform(g, surface.getWidth(), surface.getHeight());
+
 				painter.accept(g);
+
+				g.setTransform(originalTransform);
 			} finally {
 				g.dispose();
 			}
 			bs.show();
 			Toolkit.getDefaultToolkit().sync();
 		} while (bs.contentsLost());
+	}
+
+	private static void applyCameraTransform(Graphics2D g, int screenWidth, int screenHeight) {
+		Camera camera = CAMERA;
+
+		g.translate(screenWidth / 2.0, screenHeight / 2.0);
+
+		float zoom = camera.getZoom();
+		g.scale(zoom, zoom);
+		
+		g.translate(-camera.getPosition().getX(), -camera.getPosition().getY());
+	}
+
+	public static Camera getCamera() {
+		return CAMERA;
 	}
 }
 
