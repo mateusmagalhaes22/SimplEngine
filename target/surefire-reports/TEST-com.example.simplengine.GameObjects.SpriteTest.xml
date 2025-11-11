@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.Vectors.Vector2Test" time="0.056" tests="24" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.GameObjects.SpriteTest" time="0.318" tests="32" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -53,28 +53,36 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testSubtractDoublesWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testSubtractVectorResultingInZero" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testSetYWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.0"/>
-  <testcase name="testAddDoubles" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testSetXWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testSetX" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testSetY" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testConstructorWithNegativeValues" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testConstructorWithZero" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testAddVectorResultingInZero" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testComplexChainedOperations" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testSubtractVectorWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testChainedOperations" classname="com.example.simplengine.Vectors.Vector2Test" time="0.002"/>
-  <testcase name="testAddVector" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testSubtractVector" classname="com.example.simplengine.Vectors.Vector2Test" time="0.002"/>
-  <testcase name="testImmutability" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testSubtractVectorResultingInNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testSubtractDoublesResultingInZero" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testAddVectorWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testSubtractDoubles" classname="com.example.simplengine.Vectors.Vector2Test" time="0.002"/>
-  <testcase name="testAddDoublesWithNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.002"/>
-  <testcase name="testAddDoublesResultingInZero" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
-  <testcase name="testConstructor" classname="com.example.simplengine.Vectors.Vector2Test" time="0.002"/>
-  <testcase name="testSubtractDoublesResultingInNegative" classname="com.example.simplengine.Vectors.Vector2Test" time="0.001"/>
+  <testcase name="sprite_constructorWithSize_resizesImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.023"/>
+  <testcase name="sprite_setScale_nonUniform_updatesSize" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
+  <testcase name="sprite_setImage_updatesImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
+  <testcase name="sprite_constructorWithPath_loadsImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImageFromSubImage_withInvalidDimensions_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
+  <testcase name="sprite_getBounds_withScale_returnsScaledBounds" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImageFromSubImage_withBufferedImage_extractsCorrectRegion" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImageFromSubImage_multipleExtractions_worksCorrectly" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImage_withoutKeepSize_updatesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
+  <testcase name="sprite_setImageFromSubImage_outOfBounds_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.011"/>
+  <testcase name="sprite_getBounds_returnsCorrectBounds" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_inheritsGameObjectBehavior" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImage_withKeepSize_preservesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_intersects_detectsCollision" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setScale_uniform_updatesSize" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
+  <testcase name="sprite_setSize_changesSize" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_setImageFromSubImage_withoutKeepSize_updatesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
+  <testcase name="sprite_setImageFromSubImage_withFullImage_worksCorrectly" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_setImageFromSubImage_filePath_withoutKeepSize_updatesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_getBaseWidthAndHeight_returnsBaseValues" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImageFromSubImage_withFilePath_extractsCorrectRegion" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_render_withNullGraphics_doesNotThrow" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_constructorWithBufferedImage_usesImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_setImageFromSubImage_withInvalidFilePath_throwsIOException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_setImageFromSubImage_withKeepSize_preservesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_constructorWithInvalidPath_throwsIOException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_setImageFromSubImage_withNullImage_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_setImageFromSubImage_filePath_withKeepSize_preservesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_setImageFromSubImage_preservesScale" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_intersects_noCollision" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImageFromSubImage_withNegativeCoordinates_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_render_withNullImage_doesNotThrow" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
 </testsuite>

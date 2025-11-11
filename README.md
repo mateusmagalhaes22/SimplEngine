@@ -10,6 +10,9 @@ SimplEngine is a minimal Java library you can reuse in other projects. It includ
 - `Inputs.InputManager`: Singleton to track keyboard state (pressed, released, held down).
 - `Camera.Camera`: 2D camera with position, zoom, and automatic view transformation.
 - `GameObjects`: Base classes for game objects with collision detection (AABB).
+  - `GameObject`: Abstract base class with position, velocity, gravity, and physics
+  - `Rect`: Rectangle rendering with customizable colors
+  - `SpriteObject`: Image rendering with scaling, rotation support, and all GameObject features
 
 ## Getting Started
 
@@ -280,14 +283,6 @@ GameLoop loop = new GameLoop(
 );
 ```
 
-#### Example: Instant Camera Following (May Cause Jitter)
-
-```java
-// Use centerOn() para movimento instantâneo (pode tremer)
-// Não recomendado para seguir objetos em movimento
-camera.centerOn(player.getPosition());
-```
-
 #### Example: Manual Camera Control
 
 ```java
@@ -338,6 +333,156 @@ GameLoop loop = new GameLoop(
 - Draw all objects in **world coordinates** - the camera transform is applied automatically
 - Camera position represents the center of the view, not the top-left corner
 - Zoom is clamped to minimum `0.1` to prevent division by zero
+
+### Using Sprites (Images)
+
+SimplEngine provides the `SpriteObject` class for rendering images in your game. Sprites inherit from `GameObject`, so they have built-in support for position, velocity, gravity, and collision detection.
+
+#### Creating a Sprite
+
+```java
+import com.example.simplengine.GameObjects.SpriteObject;
+import java.io.IOException;
+
+// Load sprite from image file
+try {
+    SpriteObject player = new SpriteObject("assets/player.png", 100, 100);
+    
+    // The sprite will be rendered at position (100, 100)
+    // with its original image dimensions
+} catch (IOException e) {
+    System.err.println("Failed to load image: " + e.getMessage());
+}
+```
+
+#### Sprite Constructors
+
+```java
+// 1. Load image with original size
+SpriteObject sprite = new SpriteObject("path/to/image.png", x, y);
+
+// 2. Load image and resize to specific dimensions
+SpriteObject sprite = new SpriteObject("path/to/image.png", x, y, width, height);
+
+// 3. Create from existing BufferedImage
+BufferedImage img = ...; // your image
+SpriteObject sprite = new SpriteObject(img, x, y);
+```
+
+#### Sprite Methods
+
+**Scaling:**
+- `setScale(float scale)` - Set uniform scale (1.0 = 100%, 2.0 = 200%)
+- `setScale(float scaleX, float scaleY)` - Set non-uniform scale
+- `setSize(int width, int height)` - Set specific pixel dimensions
+
+**Image Management:**
+- `getImage()` - Get the BufferedImage
+- `setImage(BufferedImage img)` - Change the sprite's image
+- `getWidth()` / `getHeight()` - Get current dimensions (including scale)
+
+**GameObject Features:**
+- All standard GameObject methods work: `setPosition()`, `setSpeed()`, `setHasGravity()`, `update()`, `intersects()`, etc.
+
+#### Example: Animated Player Sprite
+
+```java
+import com.example.simplengine.GameObjects.SpriteObject;
+import com.example.simplengine.Inputs.InputManager;
+import com.example.simplengine.Inputs.Keys;
+import com.example.simplengine.Camera.Camera;
+import com.example.simplengine.Vectors.Vector2;
+
+try {
+    // Create player sprite
+    SpriteObject player = new SpriteObject("assets/player.png", 400, 300);
+    
+    // Optional: scale the sprite
+    player.setScale(2.0f); // 2x larger
+    
+    // Optional: enable physics
+    player.setHasGravity(true);
+    
+    Camera camera = Canvas.getCamera();
+    camera.setFollowSpeed(0.1f);
+    
+    GameLoop loop = new GameLoop(
+        dt -> {
+            InputManager input = InputManager.getInstance();
+            double speed = 200;
+            
+            // Move player with arrow keys
+            if (input.isKeyDown(Keys.ARROW_LEFT)) {
+                player.getSpeed().setX(-speed);
+            } else if (input.isKeyDown(Keys.ARROW_RIGHT)) {
+                player.getSpeed().setX(speed);
+            } else {
+                player.getSpeed().setX(0);
+            }
+            
+            // Jump
+            if (input.isKeyPressed(Keys.SPACE) && player.getPosition().getY() >= 500) {
+                player.getSpeed().setY(-500); // Jump velocity
+            }
+            
+            // Update player physics
+            player.update(dt);
+            
+            // Keep player above ground
+            if (player.getPosition().getY() > 500) {
+                player.getPosition().setY(500);
+                player.getSpeed().setY(0);
+            }
+            
+            // Camera follows player smoothly
+            camera.follow(player.getPosition(), dt);
+            
+            input.update();
+        },
+        () -> {
+            Canvas.render(g -> {
+                // Render player sprite
+                player.render(g);
+            });
+        }
+    );
+    
+    loop.start();
+    
+} catch (IOException e) {
+    System.err.println("Failed to load player sprite: " + e.getMessage());
+}
+```
+
+#### Sprite Collision Detection
+
+Sprites inherit collision detection from GameObject:
+
+```java
+SpriteObject player = new SpriteObject("player.png", 100, 100);
+SpriteObject enemy = new SpriteObject("enemy.png", 150, 100);
+
+if (player.intersects(enemy)) {
+    System.out.println("Player hit enemy!");
+}
+
+// Get bounding box for custom collision logic
+Rectangle2D.Float bounds = player.getBounds();
+```
+
+#### Supported Image Formats
+
+`SpriteObject` uses `javax.imageio.ImageIO`, which supports:
+- PNG (recommended for transparency)
+- JPG/JPEG
+- BMP
+- GIF (static images)
+
+**Tips:**
+- Use PNG for sprites with transparency
+- Images are loaded once and cached in memory
+- For animations, load multiple images and swap them with `setImage()`
+- Sprites are rendered in world coordinates - camera transformation is automatic
 
 ## Running Tests
 To run the tests included in this library, use the following Maven command:

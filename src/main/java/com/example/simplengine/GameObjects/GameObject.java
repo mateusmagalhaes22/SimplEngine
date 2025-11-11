@@ -44,14 +44,7 @@ public abstract class GameObject {
 
     public abstract Rectangle2D.Float getBounds();
     
-    public boolean intersects(GameObject other) {
-        Rectangle2D.Float a = this.getBounds();
-        Rectangle2D.Float b = other.getBounds();
-        return a.x <= b.x + b.width &&
-               a.x + a.width >= b.x &&
-               a.y <= b.y + b.height &&
-               a.y + a.height >= b.y;
-    }
+    public abstract boolean intersects(GameObject other);
 
     public Boolean getHasGravity() {
         return hasGravity;

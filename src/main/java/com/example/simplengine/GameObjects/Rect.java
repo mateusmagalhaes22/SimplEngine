@@ -68,5 +68,15 @@ public class Rect extends GameObject {
             (float) getHeight()
         );
     }
+
+    @Override
+    public boolean intersects(GameObject other) {
+        Rectangle2D.Float a = this.getBounds();
+        Rectangle2D.Float b = other.getBounds();
+        return a.x <= b.x + b.width &&
+               a.x + a.width >= b.x &&
+               a.y <= b.y + b.height &&
+               a.y + a.height >= b.y;
+    }
     
 }
