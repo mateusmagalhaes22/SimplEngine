@@ -15,7 +15,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import javazoom.jl.player.Player;
 
-public class SoundPlayer {
+public abstract class SoundPlayer {
 
     private static Map<String, String> loadedMp3Paths = new HashMap<>();
     private static Map<String, Clip> loadedWavClips = new HashMap<>();
