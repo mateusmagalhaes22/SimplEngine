@@ -6,4 +6,5 @@
 /home/mateus/dev/SimplEngine/src/main/java/com/example/simplengine/Inputs/InputManager.java
 /home/mateus/dev/SimplEngine/src/main/java/com/example/simplengine/Inputs/Keys.java
 /home/mateus/dev/SimplEngine/src/main/java/com/example/simplengine/Render/Canvas.java
+/home/mateus/dev/SimplEngine/src/main/java/com/example/simplengine/SimpleSound/SoundPlayer.java
 /home/mateus/dev/SimplEngine/src/main/java/com/example/simplengine/Vectors/Vector2.java

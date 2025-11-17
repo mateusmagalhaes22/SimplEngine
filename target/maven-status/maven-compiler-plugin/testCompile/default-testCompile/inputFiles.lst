@@ -3,4 +3,5 @@
 /home/mateus/dev/SimplEngine/src/test/java/com/example/simplengine/GameObjects/SpriteTest.java
 /home/mateus/dev/SimplEngine/src/test/java/com/example/simplengine/InputManagerTest.java
 /home/mateus/dev/SimplEngine/src/test/java/com/example/simplengine/MainTest.java
+/home/mateus/dev/SimplEngine/src/test/java/com/example/simplengine/SimpleSound/SoundPlayerTest.java
 /home/mateus/dev/SimplEngine/src/test/java/com/example/simplengine/Vectors/Vector2Test.java
