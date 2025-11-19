@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.614" tests="18" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.403" tests="18" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="BR"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/mateus/dev/SimplEngine/target/surefire/surefirebooter-20251117113741381_3.jar /home/mateus/dev/SimplEngine/target/surefire 2025-11-17T11-37-41_301-jvmRun1 surefire-20251117113741381_1tmp surefire_0-20251117113741381_2tmp"/>
+    <property name="sun.java.command" value="/home/mateus/dev/SimplEngine/target/surefire/surefirebooter-20251119105104416_3.jar /home/mateus/dev/SimplEngine/target/surefire 2025-11-19T10-51-04_328-jvmRun1 surefire-20251119105104416_1tmp surefire_0-20251119105104416_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/mateus/dev/SimplEngine/target/test-classes:/home/mateus/dev/SimplEngine/target/classes:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/mateus/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/mateus/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/mateus/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/mateus/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/home/mateus/.m2/repository/javazoom/jlayer/1.0.1/jlayer-1.0.1.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/mateus/dev/SimplEngine/target/surefire/surefirebooter-20251117113741381_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/mateus/dev/SimplEngine/target/surefire/surefirebooter-20251119105104416_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.8+9-Ubuntu-0ubuntu124.04.1"/>
     <property name="user.name" value="mateus"/>
@@ -53,42 +53,42 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="loadSound_withValidMp3_loadsSuccessfully" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.018"/>
-  <testcase name="playSound_withValidWav_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.2"/>
-  <testcase name="playSound_withUnsupportedFormat_printsError" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.004">
+  <testcase name="loadSound_withValidMp3_loadsSuccessfully" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.017"/>
+  <testcase name="playSound_withValidWav_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.188"/>
+  <testcase name="playSound_withUnsupportedFormat_printsError" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.003">
     <system-err><![CDATA[SoundPlayer error: Unsupported audio format. Use .mp3 or .wav
 ]]></system-err>
   </testcase>
-  <testcase name="loadSound_withNullName_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.005">
+  <testcase name="loadSound_withNullName_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.004">
     <system-err><![CDATA[SoundPlayer error: Sound name cannot be null
 ]]></system-err>
   </testcase>
-  <testcase name="playLoadedSound_withLoadedMp3_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.005"/>
-  <testcase name="loadSound_emptyName_loadsWithEmptyKey" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.026"/>
-  <testcase name="playLoadedSound_withUnloadedSound_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.013">
+  <testcase name="playLoadedSound_withLoadedMp3_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.004"/>
+  <testcase name="loadSound_emptyName_loadsWithEmptyKey" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.004"/>
+  <testcase name="playLoadedSound_withUnloadedSound_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.016">
     <system-err><![CDATA[SoundPlayer error: Sound not loaded - nonexistent
 ]]></system-err>
   </testcase>
-  <testcase name="playSound_withValidMp3_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.01"/>
-  <testcase name="playLoadedSound_multipleConsecutiveCalls_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.014"/>
-  <testcase name="playSound_withInvalidFile_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.008">
-    <system-err><![CDATA[SoundPlayer error: /tmp/junit5499425305564370560/nonexistent.mp3 (Arquivo ou diretório inexistente)
+  <testcase name="playSound_withValidMp3_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.004"/>
+  <testcase name="playLoadedSound_multipleConsecutiveCalls_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.005"/>
+  <testcase name="playSound_withInvalidFile_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.006">
+    <system-err><![CDATA[SoundPlayer error: /tmp/junit2359839382784564129/nonexistent.mp3 (Arquivo ou diretório inexistente)
 ]]></system-err>
   </testcase>
-  <testcase name="playLoadedSound_withNullName_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.007">
+  <testcase name="playLoadedSound_withNullName_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.003">
     <system-err><![CDATA[SoundPlayer error: Sound not loaded - null
 ]]></system-err>
   </testcase>
-  <testcase name="soundPlayer_multipleOperations_workCorrectly" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.096"/>
-  <testcase name="loadSound_withValidWav_loadsSuccessfully" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.037"/>
-  <testcase name="loadSound_multipleSounds_allLoaded" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.046"/>
-  <testcase name="playLoadedSound_withLoadedWav_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.063"/>
-  <testcase name="loadSound_withNullPath_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.008">
+  <testcase name="soundPlayer_multipleOperations_workCorrectly" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.059"/>
+  <testcase name="loadSound_withValidWav_loadsSuccessfully" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.018"/>
+  <testcase name="loadSound_multipleSounds_allLoaded" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.018"/>
+  <testcase name="playLoadedSound_withLoadedWav_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.021"/>
+  <testcase name="loadSound_withNullPath_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.004">
     <system-err><![CDATA[SoundPlayer error: File path cannot be null
 ]]></system-err>
   </testcase>
-  <testcase name="loadSound_sameName_replacesOldSound" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.006"/>
-  <testcase name="playSound_withNullPath_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.013">
+  <testcase name="loadSound_sameName_replacesOldSound" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.004"/>
+  <testcase name="playSound_withNullPath_doesNotThrow" classname="com.example.simplengine.SimpleSound.SoundPlayerTest" time="0.005">
     <system-err><![CDATA[SoundPlayer error: File path cannot be null
 ]]></system-err>
   </testcase>

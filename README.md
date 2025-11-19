@@ -1,18 +1,29 @@
 # SimplEngine (Java Library)
 
 ## Overview
-SimplEngine is a minimal Java library you can reuse in other projects. It includes a simple window `Canvas` helper and a configurable `GameLoop` that can target 144 FPS by default.
+SimplEngine is a minimal Java library you can reuse in other projects. It provides essential components for building 2D games and interactive applications, including window management, game loop, input handling, camera system, and game objects with physics and collision detection.
 
 ## Features
-- `Render.Canvas`: Utility to create a Swing window and drawing surface quickly.
-- `GameLoop.GameLoop`: Lightweight game loop with start/stop, target FPS (default 144), delta-time, and FPS tracking.
-- `Inputs.Keys`: Enum with main keyboard keys (A-Z, 0-9, arrows, SPACE, ENTER, etc.).
-- `Inputs.InputManager`: Singleton to track keyboard state (pressed, released, held down).
-- `Camera.Camera`: 2D camera with position, zoom, and automatic view transformation.
-- `GameObjects`: Base classes for game objects with collision detection (AABB).
-  - `GameObject`: Abstract base class with position, velocity, gravity, and physics
-  - `Rect`: Rectangle rendering with customizable colors
-  - `SpriteObject`: Image rendering with scaling, rotation support, and all GameObject features
+
+### Core Systems
+- **`Render.Canvas`**: Utility to create a Swing window and drawing surface quickly with automatic buffer management.
+- **`GameLoop.GameLoop`**: Lightweight game loop with start/stop, target FPS (default 144), delta-time, and FPS tracking.
+
+### Input Systems
+- **`Inputs.InputManager`**: Singleton to track keyboard state (pressed, released, held down).
+- **`Inputs.MouseManager`**: Singleton to track mouse position and button states.
+- **`Inputs.Key`**: Enum with main keyboard keys (A-Z, 0-9, arrows, SPACE, ENTER, etc.).
+
+### Rendering & Camera
+- **`Camera.Camera`**: 2D camera with position, zoom, smooth following, and automatic view transformation.
+
+### Game Objects
+- **`GameObject`**: Abstract base class with position, velocity, gravity, physics, and collision detection (AABB).
+- **`Rect`**: Rectangle rendering with customizable colors and all GameObject features.
+- **`SpriteObject`**: Image rendering with scaling, rotation support, and all GameObject features.
+
+### Math & Utilities
+- **`Vectors.Vector2`**: 2D vector class for positions, velocities, and directions.
 
 ## Getting Started
 
@@ -88,6 +99,8 @@ Notes:
 - You can change the target FPS at runtime with `loop.setTargetFps(144);`.
 - Query the measured FPS via `loop.getCurrentFps()`.
 - For actual rendering, create and manage your own BufferStrategy/Graphics pipeline on the AWT canvas you add to the frame.
+
+## Input Systems
 
 ### Using Keyboard Input
 
@@ -183,6 +196,154 @@ The `Key` enum includes:
 - **Function keys**: `F1` to `F12`
 
 **Important**: Always call `input.update()` at the end of your update loop to clear transient key states (`isKeyPressed`/`isKeyReleased`).
+
+### Using Mouse Input
+
+SimplEngine provides a mouse input system with the `MouseManager` singleton for tracking mouse position and button states.
+
+#### Setup
+
+Register the mouse listener with your canvas:
+
+```java
+import javax.swing.JFrame;
+import com.example.simplengine.Render.Canvas;
+import com.example.simplengine.Inputs.MouseManager;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = Canvas.newCanvas(800, 600, "Mouse Demo");
+        java.awt.Canvas surface = Canvas.getSurface();
+
+        // Register mouse listener
+        MouseManager mouse = MouseManager.getInstance();
+        surface.addMouseListener(mouse);
+        surface.addMouseMotionListener(mouse);
+        surface.setFocusable(true);
+        surface.requestFocus();
+    }
+}
+```
+
+#### Mouse Methods
+
+The `MouseManager` provides the following methods:
+
+**Position:**
+- `getMousePosition()` - Returns `Vector2` with current mouse position
+- `getMouseX()` - Returns mouse X coordinate
+- `getMouseY()` - Returns mouse Y coordinate
+
+**Button States:**
+- `isLeftPressed()` - Returns `true` while left mouse button is pressed
+- `isRightPressed()` - Returns `true` while right mouse button is pressed
+- `isMiddlePressed()` - Returns `true` while middle mouse button is pressed
+
+#### Example: Click to Spawn Objects
+
+```java
+import com.example.simplengine.GameLoop.GameLoop;
+import com.example.simplengine.GameObjects.Rect;
+import com.example.simplengine.Inputs.MouseManager;
+import com.example.simplengine.Render.Canvas;
+import java.util.ArrayList;
+import java.util.List;
+
+List<Rect> objects = new ArrayList<>();
+MouseManager mouse = MouseManager.getInstance();
+
+GameLoop loop = new GameLoop(
+    dt -> {
+        // Left click to spawn a rectangle at mouse position
+        if (mouse.isLeftPressed()) {
+            double mouseX = mouse.getMouseX();
+            double mouseY = mouse.getMouseY();
+            Rect newRect = new Rect(20, 20, mouseX - 10, mouseY - 10);
+            objects.add(newRect);
+            System.out.println("Spawned at: " + mouseX + ", " + mouseY);
+        }
+        
+        // Right click to clear all objects
+        if (mouse.isRightPressed()) {
+            objects.clear();
+            System.out.println("Cleared all objects!");
+        }
+    },
+    () -> {
+        Canvas.render(g -> {
+            for (Rect rect : objects) {
+                rect.render(g);
+            }
+        });
+    }
+);
+
+loop.start();
+```
+
+#### Example: Drag Objects with Mouse
+
+```java
+import com.example.simplengine.GameObjects.Rect;
+import com.example.simplengine.Inputs.MouseManager;
+
+Rect draggableBox = new Rect(50, 50, 375, 275);
+MouseManager mouse = MouseManager.getInstance();
+
+GameLoop loop = new GameLoop(
+    dt -> {
+        if (mouse.isLeftPressed()) {
+            // Check if mouse is over the box
+            double mouseX = mouse.getMouseX();
+            double mouseY = mouse.getMouseY();
+            
+            if (mouseX >= draggableBox.getPosition().getX() && 
+                mouseX <= draggableBox.getPosition().getX() + draggableBox.getWidth() &&
+                mouseY >= draggableBox.getPosition().getY() && 
+                mouseY <= draggableBox.getPosition().getY() + draggableBox.getHeight()) {
+                
+                // Move box to mouse position (centered)
+                draggableBox.getPosition().setX(mouseX - draggableBox.getWidth() / 2);
+                draggableBox.getPosition().setY(mouseY - draggableBox.getHeight() / 2);
+            }
+        }
+    },
+    () -> {
+        Canvas.render(g -> {
+            draggableBox.render(g);
+        });
+    }
+);
+
+loop.start();
+```
+
+#### Mouse Position with Camera
+
+When using the camera system, mouse coordinates are in screen space. To convert to world space:
+
+```java
+import com.example.simplengine.Camera.Camera;
+import com.example.simplengine.Vectors.Vector2;
+
+Camera camera = Canvas.getCamera();
+MouseManager mouse = MouseManager.getInstance();
+
+// Convert screen coordinates to world coordinates
+int screenWidth = Canvas.getSurface().getWidth();
+int screenHeight = Canvas.getSurface().getHeight();
+
+Vector2 worldPos = camera.screenToWorld(
+    mouse.getMouseX(), 
+    mouse.getMouseY(), 
+    screenWidth, 
+    screenHeight
+);
+
+System.out.println("Mouse in world: " + worldPos.getX() + ", " + worldPos.getY());
+```
+
+## Camera System
 
 ### Using the Camera System
 
@@ -334,6 +495,82 @@ GameLoop loop = new GameLoop(
 - Camera position represents the center of the view, not the top-left corner
 - Zoom is clamped to minimum `0.1` to prevent division by zero
 
+## Game Objects & Rendering
+
+### Using Rectangles (Rect)
+
+The `Rect` class provides a simple way to render colored rectangles with physics and collision detection.
+
+#### Creating Rectangles
+
+```java
+import com.example.simplengine.GameObjects.Rect;
+import java.awt.Color;
+
+// Create a rectangle: width, height, x position, y position
+Rect platform = new Rect(200, 20, 300, 400);
+
+// Optional: Set custom color (default is white)
+platform.setColor(Color.GREEN);
+
+// Optional: Enable physics
+platform.setHasGravity(true);
+```
+
+#### Example: Simple Platformer
+
+```java
+import com.example.simplengine.GameObjects.Rect;
+import com.example.simplengine.Inputs.InputManager;
+import com.example.simplengine.Inputs.Key;
+
+Rect player = new Rect(50, 50, 100, 100);
+player.setColor(Color.BLUE);
+player.setHasGravity(true);
+
+Rect ground = new Rect(800, 20, 0, 580);
+ground.setColor(Color.GREEN);
+
+GameLoop loop = new GameLoop(
+    dt -> {
+        InputManager input = InputManager.getInstance();
+        
+        // Horizontal movement
+        if (input.isKeyDown(Key.A)) {
+            player.getSpeed().setX(-200);
+        } else if (input.isKeyDown(Key.D)) {
+            player.getSpeed().setX(200);
+        } else {
+            player.getSpeed().setX(0);
+        }
+        
+        // Jump
+        if (input.isKeyPressed(Key.SPACE) && player.intersects(ground)) {
+            player.getSpeed().setY(-400);
+        }
+        
+        // Update physics
+        player.update(dt);
+        
+        // Collision with ground
+        if (player.intersects(ground)) {
+            player.getPosition().setY(ground.getPosition().getY() - player.getHeight());
+            player.getSpeed().setY(0);
+        }
+        
+        input.update();
+    },
+    () -> {
+        Canvas.render(g -> {
+            ground.render(g);
+            player.render(g);
+        });
+    }
+);
+
+loop.start();
+```
+
 ### Using Sprites (Images)
 
 SimplEngine provides the `SpriteObject` class for rendering images in your game. Sprites inherit from `GameObject`, so they have built-in support for position, velocity, gravity, and collision detection.
@@ -483,6 +720,186 @@ Rectangle2D.Float bounds = player.getBounds();
 - Images are loaded once and cached in memory
 - For animations, load multiple images and swap them with `setImage()`
 - Sprites are rendered in world coordinates - camera transformation is automatic
+
+## Advanced Topics
+
+### Collision Detection
+
+All game objects (`Rect`, `SpriteObject`) inherit collision detection from `GameObject`:
+
+```java
+import com.example.simplengine.GameObjects.Rect;
+import com.example.simplengine.GameObjects.SpriteObject;
+import java.awt.geom.Rectangle2D;
+
+Rect player = new Rect(50, 50, 100, 100);
+Rect wall = new Rect(100, 200, 200, 100);
+
+// Check collision
+if (player.intersects(wall)) {
+    System.out.println("Collision detected!");
+}
+
+// Get bounding box for custom collision logic
+Rectangle2D.Float bounds = player.getBounds();
+System.out.println("Player bounds: " + bounds.x + ", " + bounds.y);
+```
+
+### Physics and Gravity
+
+```java
+import com.example.simplengine.GameObjects.Rect;
+
+Rect fallingObject = new Rect(50, 50, 200, 100);
+
+// Enable gravity (default is 980 pixels/s²)
+fallingObject.setHasGravity(true);
+
+// Set initial velocity
+fallingObject.getSpeed().setX(100);  // Move right at 100 px/s
+fallingObject.getSpeed().setY(-200); // Launch upward at 200 px/s
+
+// In game loop
+GameLoop loop = new GameLoop(
+    dt -> {
+        // Update physics (gravity, velocity, position)
+        fallingObject.update(dt);
+        
+        // Collision with ground at y=500
+        if (fallingObject.getPosition().getY() > 500) {
+            fallingObject.getPosition().setY(500);
+            fallingObject.getSpeed().setY(0);
+        }
+    },
+    () -> {
+        Canvas.render(g -> {
+            fallingObject.render(g);
+        });
+    }
+);
+```
+
+### Complete Game Example
+
+Here's a complete example combining all features:
+
+```java
+import javax.swing.JFrame;
+import com.example.simplengine.Render.Canvas;
+import com.example.simplengine.GameLoop.GameLoop;
+import com.example.simplengine.GameObjects.SpriteObject;
+import com.example.simplengine.GameObjects.Rect;
+import com.example.simplengine.Inputs.InputManager;
+import com.example.simplengine.Inputs.MouseManager;
+import com.example.simplengine.Inputs.Key;
+import com.example.simplengine.Camera.Camera;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Game {
+    public static void main(String[] args) throws Exception {
+        // Setup window
+        JFrame frame = Canvas.newCanvas(800, 600, "My Game");
+        java.awt.Canvas surface = Canvas.getSurface();
+        
+        // Setup input
+        InputManager input = InputManager.getInstance();
+        MouseManager mouse = MouseManager.getInstance();
+        surface.addKeyListener(input.getKeyListener());
+        surface.addMouseListener(mouse);
+        surface.addMouseMotionListener(mouse);
+        surface.setFocusable(true);
+        surface.requestFocus();
+        
+        // Create game objects
+        SpriteObject player = new SpriteObject("assets/player.png", 100, 100);
+        player.setHasGravity(true);
+        
+        List<Rect> platforms = new ArrayList<>();
+        platforms.add(new Rect(800, 20, 0, 580)); // Ground
+        platforms.add(new Rect(200, 20, 200, 400)); // Platform 1
+        platforms.add(new Rect(200, 20, 500, 300)); // Platform 2
+        
+        for (Rect platform : platforms) {
+            platform.setColor(Color.GREEN);
+        }
+        
+        // Setup camera
+        Camera camera = Canvas.getCamera();
+        camera.setFollowSpeed(0.1f);
+        
+        // Game loop
+        GameLoop loop = new GameLoop(
+            dt -> {
+                // Player movement
+                double speed = 200;
+                if (input.isKeyDown(Key.A)) {
+                    player.getSpeed().setX(-speed);
+                } else if (input.isKeyDown(Key.D)) {
+                    player.getSpeed().setX(speed);
+                } else {
+                    player.getSpeed().setX(0);
+                }
+                
+                // Jump
+                boolean onGround = false;
+                for (Rect platform : platforms) {
+                    if (player.intersects(platform)) {
+                        onGround = true;
+                        break;
+                    }
+                }
+                
+                if (input.isKeyPressed(Key.SPACE) && onGround) {
+                    player.getSpeed().setY(-500);
+                }
+                
+                // Update physics
+                player.update(dt);
+                
+                // Collision resolution
+                for (Rect platform : platforms) {
+                    if (player.intersects(platform)) {
+                        player.getPosition().setY(
+                            platform.getPosition().getY() - player.getHeight()
+                        );
+                        player.getSpeed().setY(0);
+                    }
+                }
+                
+                // Camera follows player
+                camera.follow(player.getPosition(), dt);
+                
+                // Zoom control
+                if (input.isKeyDown(Key.Q)) {
+                    camera.setZoom(camera.getZoom() - 0.5f * (float) dt);
+                }
+                if (input.isKeyDown(Key.E)) {
+                    camera.setZoom(camera.getZoom() + 0.5f * (float) dt);
+                }
+                
+                input.update();
+            },
+            () -> {
+                Canvas.render(g -> {
+                    // Render platforms
+                    for (Rect platform : platforms) {
+                        platform.render(g);
+                    }
+                    
+                    // Render player
+                    player.render(g);
+                });
+            }
+        );
+        
+        loop.start();
+    }
+}
+```
+
+## Development
 
 ## Running Tests
 To run the tests included in this library, use the following Maven command:
