@@ -25,7 +25,7 @@ public class SpriteObject extends GameObject {
      * @param posY Posição Y inicial
      * @throws IOException Se o arquivo não for encontrado ou não puder ser lido
      */
-    public SpriteObject(String imagePath, int posX, int posY) throws IOException {
+    public SpriteObject(String imagePath, double posX, double posY) throws IOException {
         super();
         loadImage(imagePath);
         setPosition(new Vector2(posX, posY));

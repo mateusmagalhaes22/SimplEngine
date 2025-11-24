@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.GameObjects.SpriteTest" time="0.281" tests="32" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.simplengine.GameObjects.SpriteTest" time="0.245" tests="32" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="BR"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/mateus/dev/SimplEngine/target/surefire/surefirebooter-20251119105104416_3.jar /home/mateus/dev/SimplEngine/target/surefire 2025-11-19T10-51-04_328-jvmRun1 surefire-20251119105104416_1tmp surefire_0-20251119105104416_2tmp"/>
+    <property name="sun.java.command" value="/home/mateus/dev/SimplEngine/target/surefire/surefirebooter-20251119114004327_3.jar /home/mateus/dev/SimplEngine/target/surefire 2025-11-19T11-40-04_237-jvmRun1 surefire-20251119114004327_1tmp surefire_0-20251119114004327_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/mateus/dev/SimplEngine/target/test-classes:/home/mateus/dev/SimplEngine/target/classes:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/mateus/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/mateus/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/mateus/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/mateus/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/mateus/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/home/mateus/.m2/repository/javazoom/jlayer/1.0.1/jlayer-1.0.1.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/mateus/dev/SimplEngine/target/surefire/surefirebooter-20251119105104416_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/mateus/dev/SimplEngine/target/surefire/surefirebooter-20251119114004327_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.8+9-Ubuntu-0ubuntu124.04.1"/>
     <property name="user.name" value="mateus"/>
@@ -53,36 +53,36 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="sprite_constructorWithSize_resizesImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.025"/>
+  <testcase name="sprite_constructorWithSize_resizesImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.023"/>
   <testcase name="sprite_setScale_nonUniform_updatesSize" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
-  <testcase name="sprite_setImage_updatesImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
-  <testcase name="sprite_constructorWithPath_loadsImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
-  <testcase name="sprite_setImageFromSubImage_withInvalidDimensions_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.005"/>
-  <testcase name="sprite_getBounds_withScale_returnsScaledBounds" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
-  <testcase name="sprite_setImageFromSubImage_withBufferedImage_extractsCorrectRegion" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImage_updatesImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_constructorWithPath_loadsImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImageFromSubImage_withInvalidDimensions_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.004"/>
+  <testcase name="sprite_getBounds_withScale_returnsScaledBounds" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_setImageFromSubImage_withBufferedImage_extractsCorrectRegion" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
   <testcase name="sprite_setImageFromSubImage_multipleExtractions_worksCorrectly" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
   <testcase name="sprite_setImage_withoutKeepSize_updatesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
-  <testcase name="sprite_setImageFromSubImage_outOfBounds_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.012"/>
+  <testcase name="sprite_setImageFromSubImage_outOfBounds_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.009"/>
   <testcase name="sprite_getBounds_returnsCorrectBounds" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
-  <testcase name="sprite_inheritsGameObjectBehavior" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
-  <testcase name="sprite_setImage_withKeepSize_preservesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
-  <testcase name="sprite_intersects_detectsCollision" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
+  <testcase name="sprite_inheritsGameObjectBehavior" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.004"/>
+  <testcase name="sprite_setImage_withKeepSize_preservesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.003"/>
+  <testcase name="sprite_intersects_detectsCollision" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
   <testcase name="sprite_setScale_uniform_updatesSize" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
   <testcase name="sprite_setSize_changesSize" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
   <testcase name="sprite_setImageFromSubImage_withoutKeepSize_updatesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
-  <testcase name="sprite_setImageFromSubImage_withFullImage_worksCorrectly" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImageFromSubImage_withFullImage_worksCorrectly" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
   <testcase name="sprite_setImageFromSubImage_filePath_withoutKeepSize_updatesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
-  <testcase name="sprite_getBaseWidthAndHeight_returnsBaseValues" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_getBaseWidthAndHeight_returnsBaseValues" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
   <testcase name="sprite_setImageFromSubImage_withFilePath_extractsCorrectRegion" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
   <testcase name="sprite_render_withNullGraphics_doesNotThrow" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
-  <testcase name="sprite_constructorWithBufferedImage_usesImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
-  <testcase name="sprite_setImageFromSubImage_withInvalidFilePath_throwsIOException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
-  <testcase name="sprite_setImageFromSubImage_withKeepSize_preservesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
-  <testcase name="sprite_constructorWithInvalidPath_throwsIOException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
-  <testcase name="sprite_setImageFromSubImage_withNullImage_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_constructorWithBufferedImage_usesImage" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.0"/>
+  <testcase name="sprite_setImageFromSubImage_withInvalidFilePath_throwsIOException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImageFromSubImage_withKeepSize_preservesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
+  <testcase name="sprite_constructorWithInvalidPath_throwsIOException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImageFromSubImage_withNullImage_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
   <testcase name="sprite_setImageFromSubImage_filePath_withKeepSize_preservesDimensions" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
-  <testcase name="sprite_setImageFromSubImage_preservesScale" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_setImageFromSubImage_preservesScale" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
   <testcase name="sprite_intersects_noCollision" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
   <testcase name="sprite_setImageFromSubImage_withNegativeCoordinates_throwsException" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
-  <testcase name="sprite_render_withNullImage_doesNotThrow" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.002"/>
+  <testcase name="sprite_render_withNullImage_doesNotThrow" classname="com.example.simplengine.GameObjects.SpriteTest" time="0.001"/>
 </testsuite>
